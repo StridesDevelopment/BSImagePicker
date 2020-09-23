@@ -48,4 +48,17 @@ extension ImagePickerController: AssetsViewControllerDelegate {
         
         pushViewController(previewViewController, animated: true)
     }
+    
+    func shouldSelect(in assetsViewController: AssetsViewController, asset: PHAsset) -> Bool {
+        switch asset.mediaType {
+        case .image:
+            return assetStore.count < settings.selection.max
+        case .video:
+            // Check that we have reach maxed video selection, only allow videos less than or equal to video duration, and make sure we aren't going over max asset count
+            return assetStore.videoCount < settings.selection.videoMax &&  asset.duration <= settings.selection.videoSelectionDurationMax && assetStore.count < settings.selection.max
+        default:
+            /**All other cases should be ignored*/
+            return false
+        }
+    }
 }

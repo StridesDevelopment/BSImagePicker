@@ -30,8 +30,22 @@ import Photos
         self.assets = assets
     }
 
+    /**
+     The total count of selected assets
+     */
     public var count: Int {
         return assets.count
+    }
+    
+    public var totalPhotoCount: Int {
+        return assets.filter({ $0.mediaType == .image }).count
+    }
+
+    /**
+     Gets the number of assets that are video
+     */
+    public var videoCount: Int {
+        return assets.filter({ $0.mediaType == .video }).count
     }
 
     func contains(_ asset: PHAsset) -> Bool {

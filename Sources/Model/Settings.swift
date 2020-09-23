@@ -72,6 +72,12 @@ import Photos
         /// Min number of selections you have to make
         public lazy var min: Int = 1
         
+        /// Max number of videos selections allowed
+        public lazy var videoMax: Int = Int.max
+
+        /// The maximum duration of a video that can be selected
+        public lazy var videoSelectionDurationMax: TimeInterval = TimeInterval(30)
+        
         /// If it reaches the max limit, unselect the first selection, and allow the new selection
         public lazy var unselectOnReachingMax : Bool = false
     }
